@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>TUGAS PRAKPROWEB</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="kotak">
+    <h2>Main suit yuk!</h2>
+    <div id="tampilan">
+        <p>Pilih Mode Suit:</p>
+        <button onclick="pilihMode(1)">1. Batu Gunting Kertas</button>
+        <button onclick="pilihMode(2)">2. Gajah Orang Semut</button>
+        <button onclick="pilihMode(3)">3. Suit Jari</button>
+    </div>
+</div>
+
+<script>
+    function pilihMode(mode) {
+        let kotak = document.getElementById('tampilan');
+        
+        if (mode === 1) {
+            kotak.innerHTML = `
+                <p>Mode: Batu Gunting Kertas</p>
+                <button onclick="main(1, 'batu')">Batu</button>
+                <button onclick="main(1, 'gunting')">Gunting</button>
+                <button onclick="main(1, 'kertas')">Kertas</button>
+            `;
+        } else if (mode === 2) {
+            kotak.innerHTML = `
+                <p>Mode: Gajah Orang Semut</p>
+                <button onclick="main(2, 'gajah')">Gajah</button>
+                <button onclick="main(2, 'orang')">Orang</button>
+                <button onclick="main(2, 'semut')">Semut</button>
+            `;
+        } else {
+            kotak.innerHTML = `
+                <p>Mode: Suit Jari</p>
+                <button onclick="main(3, 'jempol')">Jempol</button>
+                <button onclick="main(3, 'telunjuk')">Telunjuk</button>
+                <button onclick="main(3, 'kelingking')">Kelingking</button>
+            `;
+        }
+    }
+
+    function main(mode, player) {
+        let comp = '';
+        let hasil = '';
+
+        if (mode === 1) {
+            let pilihan = ['batu', 'gunting', 'kertas'];
+            comp = pilihan[Math.floor(Math.random() * 3)];
+            
+            if (player === comp) hasil = 'Seri!';
+            else if ((player === 'batu' && comp === 'gunting') || (player === 'gunting' && comp === 'kertas') || (player === 'kertas' && comp === 'batu')) hasil = 'Kamu Menang!';
+            else hasil = 'Kamu Kalah!';
+        } 
+        else if (mode === 2) {
+            let pilihan = ['gajah', 'orang', 'semut'];
+            comp = pilihan[Math.floor(Math.random() * 3)];
+            
+            if (player === comp) hasil = 'Seri!';
+            else if ((player === 'gajah' && comp === 'orang') || (player === 'orang' && comp === 'semut') || (player === 'semut' && comp === 'gajah')) hasil = 'Kamu Menang!';
+            else hasil = 'Kamu Kalah!';
+        } 
+        else {
+            let pilihan = ['jempol', 'telunjuk', 'kelingking'];
+            comp = pilihan[Math.floor(Math.random() * 3)];
+            
+            if (player === comp) hasil = 'Seri!';
+            else if ((player === 'jempol' && comp === 'telunjuk') || (player === 'telunjuk' && comp === 'kelingking') || (player === 'kelingking' && comp === 'jempol')) hasil = 'Kamu Menang!';
+            else hasil = 'Kamu Kalah!';
+        }
+
+        document.getElementById('tampilan').innerHTML = `
+            <p>Kamu: <b>${player}</b></p>
+            <p>Komputer: <b>${comp}</b></p>
+            <h3>${hasil}</h3>
+            <button onclick="location.reload()">Main Lagi</button>
+        `;
+    }
+</script>
+
+</body>
+</html>
